@@ -1,45 +1,74 @@
 return {
-    -- Lazy.nvim
     { "folke/lazy.nvim", version = "*" },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
 
-    -- Colorscheme
     {
         "ellisonleao/gruvbox.nvim",
+        priority = 1000,
         config = function()
-            vim.cmd("colorscheme gruvbox")
+            vim.cmd.colorscheme("gruvbox")
         end
     },
 
-    -- File Explorer
-    {
-        "nvim-tree/nvim-tree.lua",
-        dependencies = "nvim-tree/nvim-web-devicons",
-        config = function()
-            require("nvim-tree").setup {}
-        end
-    },
-
-    -- Status line
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = "nvim-tree/nvim-web-devicons",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require("lualine").setup {}
+            require("lualine").setup({
+                options = {
+                    theme = "gruvbox",
+                    section_separators = "",
+                    component_separators = ""
+                }
+            })
         end
     },
 
-    -- Telescope (fuzzy search)
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("bufferline").setup({
+                options = {
+                    diagnostics = "nvim_lsp",
+                    separator_style = "slant",
+                    show_close_icon = false,
+                }
+            })
+        end
+    },
+
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+            require("neo-tree").setup({
+                filesystem = {
+                    filtered_items = {
+                        hide_dotfiles = false,
+                        hide_gitignored = false,
+                    },
+                },
+            })
+        end
+    },
+
     {
         "nvim-telescope/telescope.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" }
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("telescope").setup({})
+        end
     },
 
-    -- LSP (Language Server Protocol)
-    {
-        "neovim/nvim-lspconfig"
-    },
+    { "neovim/nvim-lspconfig" },
 
-    -- LSP installer
     {
         "williamboman/mason.nvim",
         config = function()
@@ -47,20 +76,113 @@ return {
         end
     },
     {
-        "williamboman/mason-lspconfig.nvim"
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "lua_ls",
+                    "ts_ls",
+                    "intelephense",
+                    "html",
+                    "cssls",
+                    "jsonls",
+                    "eslint",
+                },
+                automatic_installation = true,
+            })
+        end
     },
 
-    -- Autocompletion
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
-    { "L3MON4D3/LuaSnip" },            -- snippet engine
+    { "hrsh7th/cmp-buffer" },
+    { "L3MON4D3/LuaSnip" },
     { "saadparwaiz1/cmp_luasnip" },
+    { "rafamadriz/friendly-snippets" },
+    {
+        "SmiteshP/nvim-navic",
+        dependencies = "neovim/nvim-lspconfig",
+        config = function()
+            require("nvim-navic").setup({
+                highlight = true,
+                separator = "  ",
+            })
+        end
+    },
 
-    -- Git integration
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("barbecue").setup({
+                theme = "gruvbox",
+            })
+        end
+    },
+
     {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require("gitsigns").setup {}
+            require("gitsigns").setup()
+        end
+    },
+
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = function()
+            require("noice").setup({
+                lsp = {
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                presets = {
+                    bottom_search = true,
+                    command_palette = true,
+                    long_message_to_split = true,
+                },
+            })
+        end
+    },
+
+    {
+        "folke/trouble.nvim",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("trouble").setup({})
+        end
+    },
+
+    {
+        "goolord/alpha-nvim",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("alpha").setup(require("alpha.themes.dashboard").config)
+        end
+    },
+
+    {
+        "karb94/neoscroll.nvim",
+        config = function()
+            require("neoscroll").setup()
+        end
+    },
+
+    {
+        "ggandor/leap.nvim",
+        config = function()
+            require("leap").add_default_mappings()
         end
     }
 }
