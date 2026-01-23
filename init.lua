@@ -1,4 +1,3 @@
--- Carga lazy.nvim
 vim.loader.enable()
 
 require("lazy").setup("plugins", {
@@ -7,7 +6,6 @@ require("lazy").setup("plugins", {
     }
 })
 
--- Opciones generales
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.expandtab = true
