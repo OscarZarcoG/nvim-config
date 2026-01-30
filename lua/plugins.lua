@@ -81,12 +81,13 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
-                    "ts_ls",
+                    "tsserver", 
                     "intelephense",
                     "html",
                     "cssls",
                     "jsonls",
                     "eslint",
+                    "tailwindcss", 
                 },
                 automatic_installation = true,
             })

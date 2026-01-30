@@ -1,0 +1,8 @@
+require("lspconfig").lua_ls.setup({})
+require("lspconfig").tsserver.setup({})
+require("lspconfig").intelephense.setup({})
+require("lspconfig").html.setup({})
+require("lspconfig").cssls.setup({})
+require("lspconfig").jsonls.setup({})
+require("lspconfig").eslint.setup({})
+require("lspconfig").tailwindcss.setup({})
