@@ -96,9 +96,11 @@ return {
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-path" },
     { "L3MON4D3/LuaSnip" },
     { "saadparwaiz1/cmp_luasnip" },
     { "rafamadriz/friendly-snippets" },
+    
     {
         "SmiteshP/nvim-navic",
         dependencies = "neovim/nvim-lspconfig",
@@ -184,6 +186,91 @@ return {
         config = function()
             require("leap").add_default_mappings()
         end
-    }
-}
+    },
 
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup({})
+        end
+    },
+
+    {
+        "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup()
+        end
+    },
+
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        config = function()
+            require("ibl").setup({
+                indent = { char = "│" },
+                scope = { enabled = true },
+            })
+        end
+    },
+
+    {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end
+    },
+
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({})
+        end
+    },
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup()
+        end
+    },
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("which-key").setup({})
+        end
+    },
+
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("dressing").setup()
+        end
+    },
+
+    {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("illuminate").configure({
+                delay = 100,
+                under_cursor = true,
+            })
+        end
+    },
+
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end },
+        },
+    },
+}

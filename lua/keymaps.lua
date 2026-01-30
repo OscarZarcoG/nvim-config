@@ -11,6 +11,8 @@ keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
 keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>fc", ":Telescope commands<CR>", opts)
+keymap("n", "<leader>fk", ":Telescope keymaps<CR>", opts)
 
 keymap("n", "<leader>cfg", function()
   require("telescope.builtin").find_files({
@@ -33,6 +35,8 @@ keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
 keymap("n", "<leader>x", ":bdelete<CR>", opts)
 keymap("n", "<leader>X", ":bufdo bd<CR>", opts)
+keymap("n", "<leader>bp", ":BufferLinePick<CR>", opts)
+keymap("n", "<leader>bc", ":BufferLinePickClose<CR>", opts)
 
 -- Navegación entre ventanas
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -49,6 +53,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Dividir ventanas
 keymap("n", "<leader>sv", ":vsplit<CR>", opts)
 keymap("n", "<leader>sh", ":split<CR>", opts)
+keymap("n", "<leader>se", "<C-w>=", opts)
+keymap("n", "<leader>sx", ":close<CR>", opts)
 
 -- Terminal
 local terminal_bufnr = nil
@@ -69,12 +75,17 @@ keymap("n", "<C-t>", function()
 end, opts)
 
 keymap("t", "<Esc>", [[<C-\><C-n>]], opts)
+keymap("t", "<C-h>", [[<C-\><C-n><C-w>h]], opts)
+keymap("t", "<C-j>", [[<C-\><C-n><C-w>j]], opts)
+keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], opts)
 
 -- Trouble
 keymap("n", "<leader>xx", ":Trouble diagnostics toggle<CR>", opts)
 keymap("n", "<leader>xd", ":Trouble diagnostics toggle filter.buf=0<CR>", opts)
 keymap("n", "<leader>xl", ":Trouble loclist toggle<CR>", opts)
 keymap("n", "<leader>xq", ":Trouble quickfix toggle<CR>", opts)
+keymap("n", "<leader>xt", ":TodoTrouble<CR>", opts)
 
 -- LSP
 keymap("n", "gd", vim.lsp.buf.definition, opts)
@@ -87,6 +98,7 @@ keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 keymap("n", "[d", vim.diagnostic.goto_prev, opts)
 keymap("n", "]d", vim.diagnostic.goto_next, opts)
 keymap("n", "<leader>f", vim.lsp.buf.format, opts)
+keymap("n", "<leader>D", vim.lsp.buf.type_definition, opts)
 
 -- Mover líneas
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
@@ -105,6 +117,14 @@ keymap("v", ">", ">gv", opts)
 -- Pegar sin romper clipboard
 keymap("v", "p", '"_dP', opts)
 
+-- Duplicar línea
+keymap("n", "<C-d>", "yyp", opts)
+keymap("v", "<C-d>", "y'>p", opts)
+
+-- Comentarios
+keymap("n", "<C-/>", ":lua require('Comment.api').toggle.linewise.current()<CR>", opts)
+keymap("v", "<C-/>", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
+
 -- Guardar / salir
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
@@ -112,6 +132,9 @@ keymap("n", "<leader>Q", ":qa!<CR>", opts)
 keymap("n", "<C-s>", ":w<CR>", opts)
 keymap("i", "<C-s>", "<Esc>:w<CR>a", opts)
 keymap("v", "<C-s>", "<Esc>:w<CR>", opts)
+
+-- Seleccionar todo
+keymap("n", "<C-a>", "ggVG", opts)
 
 -- Extras
 keymap("n", "<leader>h", ":nohlsearch<CR>", opts)
@@ -121,3 +144,10 @@ keymap("n", "<leader>a", ":Alpha<CR>", opts)
 keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "<leader>gb", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", opts)
+keymap("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", opts)
+keymap("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", opts)
+keymap("n", "[c", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "]c", ":Gitsigns next_hunk<CR>", opts)
+
+-- WhichKey
+keymap("n", "<leader>?", ":WhichKey<CR>", opts)
