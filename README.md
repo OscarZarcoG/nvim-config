@@ -19,6 +19,24 @@ Configuración completa de Neovim con LSP, autocompletado, Git y más.
 - Colorizer para previsualización de colores
 - Indent blankline para guías visuales
 
+## Mason LSP
+- marksman
+- php-cs-fixer
+- editorconfig-checker
+- blade-formatter
+- css-lsp
+- eslint-lsp
+- html-lsp
+- inteliphense
+- json-lsp
+- lua-languaje-server
+- prettier
+- stylua
+- tailwindcss-languaje-server
+- typescript-languaje-server
+
+To search in Mason: **Shift + 7**
+
 ## Requisitos
 
 ### Windows 11
@@ -46,28 +64,33 @@ Agregar nvim al PATH.
 
 #### 2. Instalar Ripgrep
 Abrir PowerShell y ejecutar:
-
+```bash
 winget install BurntSushi.ripgrep.MSVC
+```
 
 #### 3. Clonar configuración
 Abrir PowerShell y ejecutar:
-
+```bash
 mkdir $env:LOCALAPPDATA\nvim
 cd $env:LOCALAPPDATA\nvim
 git clone git@github.com:OscarZarcoG/nvim-config.git .
+```
 
 #### 4. Abrir Neovim
 Ejecutar:
 
+```bash
 nvim
+```
 
 Esperar a que lazy.nvim instale todos los plugins automáticamente.
 
 #### 5. Instalar LSPs
 Abrir Neovim y ejecutar:
 
+```vim
 :Mason
-
+```
 Los LSPs configurados se instalarán automáticamente.
 
 ### Linux/macOS
@@ -75,39 +98,52 @@ Los LSPs configurados se instalarán automáticamente.
 #### 1. Instalar Neovim
 
 Ubuntu/Debian:
+```bash
 sudo apt install neovim
+```
 
 Arch:
+```bash
 sudo pacman -S neovim
+```
 
 macOS:
+```bash
 brew install neovim
+```
 
 #### 2. Instalar dependencias
 
 Ubuntu/Debian:
+```bash
 sudo apt install ripgrep nodejs npm
+```
 
 Arch:
+```bash
 sudo pacman -S ripgrep nodejs npm
+```
 
 macOS:
+```bash
 brew install ripgrep node
+```
 
 #### 3. Clonar configuración
-
+```bash
 mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 git clone git@github.com:OscarZarcoG/nvim-config.git .
-
+```
 #### 4. Abrir Neovim
-
+```bash
 nvim
-
+```
 Los plugins se instalarán automáticamente.
 
 ## Estructura del proyecto
 
+```
 nvim/
 ├── init.lua
 ├── lua/
@@ -117,39 +153,47 @@ nvim/
 │   ├── lsp-config.lua
 │   └── cmp-config.lua
 └── README.md
+```
 
 ## Solución de problemas
 
 ### Los plugins no se instalan
 1. Cerrar Neovim completamente
-2. Ejecutar: :Lazy sync
+2. Ejecutar: `:Lazy sync`
 3. Reiniciar Neovim
 
 ### El LSP no funciona
-1. Verificar que Mason esté instalado: :Mason
+1. Verificar que Mason esté instalado: `:Mason`
 2. Instalar manualmente el LSP necesario
 3. Reiniciar Neovim
 
 ### Telescope no encuentra archivos
-1. Verificar que ripgrep esté instalado: rg --version
+1. Verificar que ripgrep esté instalado: `rg --version`
 2. Instalar ripgrep según tu sistema operativo
 
 ### Error al compilar Treesitter
 1. Instalar compilador de C (GCC o Clang)
 2. En Windows: Instalar Visual Studio Build Tools
-3. Ejecutar: :TSUpdate
+3. Ejecutar: `:TSUpdate`
 
 ## Actualizar la configuración
 
 En Linux/macOS:
+```bash
 cd ~/.config/nvim
 git pull
+```
 
 En Windows:
+```bash
 cd $env:LOCALAPPDATA\nvim
 git pull
+```
 
-Luego abrir Neovim y ejecutar: :Lazy sync
+Luego abrir Neovim y ejecutar: 
+```vim
+:Lazy sync
+```
 
 ## Plugins incluidos
 
@@ -211,20 +255,22 @@ Luego abrir Neovim y ejecutar: :Lazy sync
 - jsonls: JSON
 - eslint: ESLint
 
-Puedes agregar más LSPs desde Mason con :Mason
+Puedes agregar más LSPs desde Mason con `:Mason`
 
 ## Personalización
 
 ### Cambiar tema
-Editar lua/plugins.lua y cambiar la línea:
+Editar `lua/plugins.lua` y cambiar la línea:
 
+```lua
 vim.cmd.colorscheme("gruvbox")
+```
 
 ### Agregar más LSPs
-Editar lua/plugins.lua en la sección mason-lspconfig y agregar el LSP deseado a ensure_installed.
+Editar `lua/plugins.lua` en la sección mason-lspconfig y agregar el LSP deseado a `ensure_installed`.
 
 ### Modificar keymaps
-Editar lua/keymaps.lua según tus preferencias.
+Editar `lua/keymaps.lua` según tus preferencias.
 
 ## Créditos
 
