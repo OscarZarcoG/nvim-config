@@ -1,0 +1,10 @@
+local lspconfig = require('lspconfig')
+
+lspconfig.lua_ls.setup({})
+lspconfig.ts_ls.setup({})
+lspconfig.tailwindcss.setup({})
+lspconfig.intelephense.setup({})
+lspconfig.html.setup({})
+lspconfig.cssls.setup({})
+lspconfig.jsonls.setup({})
+lspconfig.eslint.setup({})

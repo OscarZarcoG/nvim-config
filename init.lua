@@ -11,6 +11,7 @@ require("lazy").setup("plugins", {
 
 require("keymaps")
 require("cmp-config")
+require("lsp-config") 
 
 vim.opt.number = true
 vim.opt.relativenumber = true

@@ -76,23 +76,23 @@ return {
         end
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "lua_ls",
-                    "tsserver", 
-                    "intelephense",
-                    "html",
-                    "cssls",
-                    "jsonls",
-                    "eslint",
-                    "tailwindcss", 
-                },
-                automatic_installation = true,
-            })
-        end
-    },
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "lua_ls",
+                "ts_ls",
+                "tailwindcss",
+                "intelephense",
+                "html",
+                "cssls",
+                "jsonls",
+                "eslint",
+            },
+            automatic_installation = true,
+        })
+    end
+  },
 
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
