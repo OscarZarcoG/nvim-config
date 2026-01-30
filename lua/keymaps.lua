@@ -53,7 +53,7 @@ keymap("n", "<leader>sh", ":split<CR>", opts)
 -- Terminal
 local terminal_bufnr = nil
 
-keymap("n", "<C-ñ>", function()
+keymap("n", "<C-m>", function()
   if terminal_bufnr and vim.api.nvim_buf_is_valid(terminal_bufnr) then
     vim.cmd("buffer " .. terminal_bufnr)
   else
@@ -62,7 +62,7 @@ keymap("n", "<C-ñ>", function()
   end
 end, opts)
 
-keymap("n", "<C-Ñ>", function()
+keymap("n", "<C-M>", function()
   if terminal_bufnr and vim.api.nvim_buf_is_valid(terminal_bufnr) then
     vim.cmd("bd " .. terminal_bufnr)
     terminal_bufnr = nil

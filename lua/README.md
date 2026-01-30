@@ -38,8 +38,8 @@ Leader key: ESPACIO
 - Espacio + S H: Dividir ventana horizontalmente
 
 ## Terminal
-- Ctrl + Ñ: Abrir/enfocar terminal inferior
-- Ctrl + Shift + Ñ: Cerrar terminal
+- Ctrl + M: Abrir/enfocar terminal inferior
+- Ctrl + Shift + M: Cerrar terminal
 - Esc (en modo terminal): Salir a modo normal
 
 ## Trouble (Diagnósticos/Errores)
