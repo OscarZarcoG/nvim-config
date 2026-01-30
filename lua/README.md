@@ -37,6 +37,11 @@ Leader key: ESPACIO
 - Espacio + S V: Dividir ventana verticalmente
 - Espacio + S H: Dividir ventana horizontalmente
 
+## Terminal
+- Ctrl + Ñ: Abrir/enfocar terminal inferior
+- Ctrl + Shift + Ñ: Cerrar terminal
+- Esc (en modo terminal): Salir a modo normal
+
 ## Trouble (Diagnósticos/Errores)
 - Espacio + X X: Abrir/cerrar panel de todos los diagnósticos
 - Espacio + X D: Diagnósticos solo del archivo actual
