@@ -53,19 +53,18 @@ keymap("n", "<leader>sh", ":split<CR>", opts)
 -- Terminal
 local terminal_bufnr = nil
 
-keymap("n", "<C-m>", function()
+keymap("n", "<C-t>", function()
   if terminal_bufnr and vim.api.nvim_buf_is_valid(terminal_bufnr) then
-    vim.cmd("buffer " .. terminal_bufnr)
+    local win = vim.fn.bufwinid(terminal_bufnr)
+    if win ~= -1 then
+      vim.cmd("close")
+    else
+      vim.cmd("botright split | buffer " .. terminal_bufnr)
+      vim.cmd("resize 15")
+    end
   else
     vim.cmd("botright split | resize 15 | terminal")
     terminal_bufnr = vim.api.nvim_get_current_buf()
-  end
-end, opts)
-
-keymap("n", "<C-M>", function()
-  if terminal_bufnr and vim.api.nvim_buf_is_valid(terminal_bufnr) then
-    vim.cmd("bd " .. terminal_bufnr)
-    terminal_bufnr = nil
   end
 end, opts)
 
